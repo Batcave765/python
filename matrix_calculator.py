@@ -17,6 +17,16 @@ def calculator(array1,array2,rows,columns,operation):
             for j in range (columns):
                 for k in range (rows):
                     result[i][j]+=array1[i][k]*array2[k][j]
+    else:
+        b_inv=[[0,0],[0,0]]
+        det_inv=(array2[0][0]*array2[1][1])-(array2[0][1]*array2[1][0])
+        det=1/det_inv
+        b_inv[0][0]=array2[1][1]*det
+        b_inv[1][1]=array2[0][0]*det
+        b_inv[0][1]=-(array2[0][1]*det)
+        b_inv[1][0]=-(array2[1][0]*det)
+        operation=3
+        result=calculator(array1, b_inv, rows, columns, operation)
     return(result)  
        
 
@@ -41,6 +51,6 @@ for n in range (2):
         array1=arr
     else:
         array2=arr
-operation=int(input("Enter a number\n1.Addition\n2.Subraction\n3.Multiplication"))
+operation=int(input("Enter a number\n1.Addition\n2.Subraction\n3.Multiplication\n4.Division"))
 result=calculator(array1,array2,rows,columns,operation)
 print(result)
